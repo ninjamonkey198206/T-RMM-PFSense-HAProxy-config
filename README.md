@@ -2,7 +2,7 @@
 
 Assumes fully configured public DNS or DDNS, and a functional PFSense installation with existing valid wildcard SSL certificate available. Adjust hostnames, IPs, etc to suit the environment.
 
-
+##
 # HAProxy installation
 
 Go to System > Package Manager
@@ -17,6 +17,7 @@ Find and install haproxy-devel
 
 ![Screenshot 2022-03-31 130322](https://user-images.githubusercontent.com/24654529/161121985-953e24a6-bcaa-418d-a1e4-1ef62a193623.png)
 
+##
 # Firewall configuration
 
 Go to Firewall > Rules
@@ -39,6 +40,7 @@ Create a duplicate rule, changing the port to 443 and the description for HTTPS
 
 Enable the new rules.
 
+##
 # HAProxy backend configuration
 
 Go to Services > HAProxy
@@ -82,20 +84,19 @@ timeout tunnel      15000
 
 Scroll down, save, and apply changes when asked.
 
-Copy the meshend. Change the Name entry to match the mesh FQDN (eg, mesh.example.com).
+![rmmhaproxy4](https://user-images.githubusercontent.com/24654529/175109842-1a77fd32-43f3-4399-b10b-8f9320e80ed7.png)
 
-Change the Name for the server to mesh.
+Copy the mesh backend. Change the Name entry to match the mesh FQDN-websockets (eg, mesh.example.com-websockets).
 
-In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to 15000.
+Change the Name for the server to mesh-websockets.
 
-In the Advanced settings section, add the following in the Backend pass thru box:
+In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to 3000.
 
-```text
-timeout tunnel      15000
-```
+In the Advanced settings section, change the timeout tunnel entry in the Backend pass thru box to 3600000.
 
 Scroll down, save, and apply changes when asked.
 
+##
 # Shared HTTP to HTTPS redirect frontend 
 
 Now go to the Frontend tab. Click the button to add a new frontend.
