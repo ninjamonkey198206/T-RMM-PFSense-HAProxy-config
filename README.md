@@ -107,17 +107,21 @@ Fill in the entries as shown in the screen capture below:
 
 ![Screenshot 2022-03-31 144739](https://user-images.githubusercontent.com/24654529/161137213-1c992c70-c608-48f9-b2ec-6ba3f8852bb1.png)
 
-Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl for your server. Enter the hostname in the Name field, change the Expression to Host matches, and enter the FQDN of the website/service into the Value field.
+Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter rmm in the Name field, change the Expression to Host matches, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
 
-![Screenshot 2022-03-31 145213](https://user-images.githubusercontent.com/24654529/161138441-db439999-e8f7-46cb-b4ac-ac324e9983a9.png)
+Copy the rmm acl. Change the Name to api, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
 
-Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select http-request redirect, enter scheme https into the rule field, and enter the hostname into the Condition acl names field.
+Copy the api acl. Change the Name to mesh, and the Value field to the FQDN for mesh into the Value field (eg, mesh.example.com).
 
-![Screenshot 2022-03-31 145855](https://user-images.githubusercontent.com/24654529/161139297-01ebd984-a571-41c0-8cd0-f48dfb0e0b1b.png)
+Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select http-request redirect, enter scheme https into the rule field, and enter rmm into the Condition acl names field.
+
+Copy the action you just created, and change the Condition acl name to api.
+
+Repeat this again, and change the Condition acl name to mesh.
 
 Scroll down and select None for the Default Backend.
 
-![Screenshot 2022-03-31 150034](https://user-images.githubusercontent.com/24654529/161139524-65658f7a-11ca-454d-adae-861954dcac9f.png)
+![rmmhaproxy2 - Copy](https://user-images.githubusercontent.com/24654529/175117814-e88d87be-99bb-42bc-bcae-2d9e51b9300b.png)
 
 Scroll down to the Advanced settings section. Tick the Use "forwardfor" option box, select http-server-close for Use "httpclose" option, and add/copy-paste
 ```text
