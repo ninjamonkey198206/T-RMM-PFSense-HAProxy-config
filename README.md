@@ -159,7 +159,7 @@ Save and apply changes.
 
 This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends using it as a shared frontend, while allowing other ACLs and actions to be assigned to individual sub frontends independent from each other, as well as give a visual list of frontends/services that's easier to read than a long list of ACLs.
 
-# Site/service frontend
+# T-RMM frontend
 
 Click the button to add a new frontend.
 
