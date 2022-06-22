@@ -47,17 +47,52 @@ Go to Services > HAProxy
 
 Leave the Settings tab alone for now and skip to the Backend tab:
 
-Add a new backend for the webserver. Assumes server is listening on port 80. Enter the FQDN into the box titled Name, the click the down arrow in the Server list panel to add a server definition.
+![Screenshot 2022-06-22 122204](https://user-images.githubusercontent.com/24654529/175102215-2a8a59fa-2151-4cf6-9077-47b91077d512.png)
 
-![Screenshot 2022-03-31 143321](https://user-images.githubusercontent.com/24654529/161135144-928c482a-614b-490e-bf75-bbe08da53e54.png)
+Add backend for rmm. Enter the rmm FQDN (eg, rmm.example.com) into the box titled Name, then click the down arrow in the Server list panel to add a server definition.
 
-Enter the hostname only for the server in the Name box, enter the internal IP address of the server, and 80 for the Port. Leave the other settings alone.
+Enter the rmm for the server in the Name box, enter the internal IP address of the server, 443 (or other appropriate port) for the Port, and check the Encrypt(SSL) box.
 
-![Screenshot 2022-03-31 143924](https://user-images.githubusercontent.com/24654529/161135767-6b5a1b40-a184-45e5-b639-4dc8415be6b2.png)
+In the Timeout / retry settings section, enter 30000 in Connection timeout and Server timeout.
 
 In the Health checking section, set Health check method to none.
 
-![Screenshot 2022-03-31 144144](https://user-images.githubusercontent.com/24654529/161136111-6a9718df-0c18-4e7c-b3e1-26d6ce8adc55.png)
+In the Advanced settings section, enter the following in the Backend pass thru box:
+
+```text
+http-request add-header X-Forwarded-Host %[req.hdr(Host)]
+http-request add-header X-Forwarded-Proto https
+```
+
+Scroll down, save, and apply changes when asked.
+
+![rmmhaproxy5](https://user-images.githubusercontent.com/24654529/175108303-64fd386b-135c-42ba-8489-0ef15751cc57.JPG)
+
+Copy the rmm backend. Change the Name entry to match the mesh FQDN (eg, mesh.example.com).
+
+Change the Name for the server to mesh.
+
+In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to 15000.
+
+In the Advanced settings section, add the following in the Backend pass thru box:
+
+```text
+timeout tunnel      15000
+```
+
+Scroll down, save, and apply changes when asked.
+
+Copy the meshend. Change the Name entry to match the mesh FQDN (eg, mesh.example.com).
+
+Change the Name for the server to mesh.
+
+In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to 15000.
+
+In the Advanced settings section, add the following in the Backend pass thru box:
+
+```text
+timeout tunnel      15000
+```
 
 Scroll down, save, and apply changes when asked.
 
