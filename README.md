@@ -23,7 +23,7 @@
 ###
 
 ###
-##
+## [T-RMM frontend](#t-rmm-frontend-1)
 ###
 
 ###
@@ -197,14 +197,26 @@ This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends u
 
 Click the button to add a new frontend.
 
-Fill out the fields as in the picture below. In the Name field, enter rmm. In the Description field, enter the FQDN. Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
+In the Name field, enter t-rmm. In the Description field, enter the rmm FQDN (eg, rmm.example.com). Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
 
-![Screenshot 2022-03-31 161129](https://user-images.githubusercontent.com/24654529/161150507-90dd91b8-6340-49b6-8374-d7f984f10e1a.png)
+Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter **rmm** in the Name field, change the Expression to **Host matches**, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
 
-Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl for your server. Enter the hostname in the Name field, change the Expression to Host matches, and enter the FQDN of the website/service into the Value field. In the Actions area, click the down arrow to create a new action. In the Action field, select Use Backend, select the backend you created earlier, and enter the hostname into the Condition acl names field. Scroll down and select None for the Default Backend.
+Copy the rmm acl. Change the Name to **api**, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
 
-![Screenshot 2022-03-31 161526](https://user-images.githubusercontent.com/24654529/161152536-2801c030-5101-4e2f-ae7a-e647f7b809c0.png)
+Add a new acl. Change the Expression to **Custom acl:** , in the Name field enter **is_websocket** , and in the Value field enter **hdr(Upgrade) -i WebSocket** .
+
+Copy the api acl. Change the Name to **mesh**, and the Value field to the FQDN for mesh into the Value field (eg, mesh.example.com).
+
+Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select **Use Backend**, select the rmm backend you created earlier, and enter **rmm** into the Condition acl names field.
+
+Copy the rmm action you just created, and change the Condition acl name to **api**.
+
+Create a new action. In the Action field, select **Use Backend**, select the mesh websockets backend, and enter **is_websocket mesh** into the Condition acl names field.
+
+Copy the api action, select the mesh backend, and change the Condition acl name to **mesh**.
+
+Scroll down and select None for the Default Backend.
 
 Save and apply changes.
 
-The website/service should now be available internally and externally at the configured URL, with SSL encryption, and automatic HTTP to HTTPS forwarding.
+The websites/services should now be available internally and externally at the configured URL, with SSL encryption, and automatic HTTP to HTTPS forwarding.
