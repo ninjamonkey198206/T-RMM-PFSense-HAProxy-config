@@ -119,9 +119,9 @@ Copy the mesh backend. Change the Name entry to match the mesh FQDN-websockets (
 
 Change the Name for the server to mesh-websockets.
 
-In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to 3000.
+In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to **3000**.
 
-In the Advanced settings section, change the timeout tunnel entry in the Backend pass thru box to 3600000.
+In the Advanced settings section, change the timeout tunnel entry in the Backend pass thru box to **3600000**.
 
 Scroll down, save, and apply changes when asked.
 
@@ -138,23 +138,23 @@ Fill in the entries as shown in the screen capture below:
 
 ![Screenshot 2022-03-31 144739](https://user-images.githubusercontent.com/24654529/161137213-1c992c70-c608-48f9-b2ec-6ba3f8852bb1.png)
 
-Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter rmm in the Name field, change the Expression to Host matches, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
+Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter **rmm** in the Name field, change the Expression to **Host matches**, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
 
-Copy the rmm acl. Change the Name to api, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
+Copy the rmm acl. Change the Name to **api**, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
 
-Copy the api acl. Change the Name to mesh, and the Value field to the FQDN for mesh into the Value field (eg, mesh.example.com).
+Copy the api acl. Change the Name to **mesh**, and the Value field to the FQDN for mesh into the Value field (eg, mesh.example.com).
 
-Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select http-request redirect, enter scheme https into the rule field, and enter rmm into the Condition acl names field.
+Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select **http-request redirect**, enter **scheme https** into the rule field, and enter **rmm** into the Condition acl names field.
 
-Copy the action you just created, and change the Condition acl name to api.
+Copy the action you just created, and change the Condition acl name to **api**.
 
-Repeat this again, and change the Condition acl name to mesh.
+Repeat this again, and change the Condition acl name to **mesh**.
 
 Scroll down and select None for the Default Backend.
 
 ![rmmhaproxy2 - Copy](https://user-images.githubusercontent.com/24654529/175117814-e88d87be-99bb-42bc-bcae-2d9e51b9300b.png)
 
-Scroll down to the Advanced settings section. Tick the Use "forwardfor" option box, select http-server-close for Use "httpclose" option, and add/copy-paste
+Scroll down to the Advanced settings section. Tick the **Use "forwardfor" option** box, select **http-server-close** for **Use "httpclose" option**, and add/copy-paste
 ```text
 http-request add-header         X-Real-IP %[src]
 ```
@@ -193,13 +193,16 @@ Save and apply changes.
 
 This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends using it as a shared frontend, while allowing other ACLs and actions to be assigned to individual sub frontends independent from each other, as well as give a visual list of frontends/services that's easier to read than a long list of ACLs.
 
+##
+###
 # T-RMM frontend
+###
 
 Click the button to add a new frontend.
 
 ![pfsensermm7](https://user-images.githubusercontent.com/24654529/175368001-5679fce6-44d1-4090-ac95-4e059246c5c4.png)
 
-In the Name field, enter t-rmm. In the Description field, enter the rmm FQDN (eg, rmm.example.com). Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
+In the Name field, enter **t-rmm**. In the Description field, enter the rmm FQDN (eg, rmm.example.com). Set the Status to active, tick the Shared Frontend box, and select **https_shared - http** as the Primary frontend.
 
 Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter **rmm** in the Name field, change the Expression to **Host matches**, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
 
