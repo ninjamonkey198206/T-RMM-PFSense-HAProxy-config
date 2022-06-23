@@ -197,6 +197,8 @@ This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends u
 
 Click the button to add a new frontend.
 
+![pfsensermm7](https://user-images.githubusercontent.com/24654529/175368001-5679fce6-44d1-4090-ac95-4e059246c5c4.png)
+
 In the Name field, enter t-rmm. In the Description field, enter the rmm FQDN (eg, rmm.example.com). Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
 
 Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter **rmm** in the Name field, change the Expression to **Host matches**, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
@@ -219,4 +221,4 @@ Scroll down and select None for the Default Backend.
 
 Save and apply changes.
 
-The websites/services should now be available internally and externally at the configured URL, with SSL encryption, and automatic HTTP to HTTPS forwarding.
+The websites/services should now be available internally and externally at the configured URLs, with SSL encryption, and automatic HTTP to HTTPS forwarding.
