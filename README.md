@@ -163,7 +163,7 @@ This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends u
 
 Click the button to add a new frontend.
 
-Fill out the fields as in the picture below. In the Name field, enter the hostname. In the Description field, enter the FQDN. Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
+Fill out the fields as in the picture below. In the Name field, enter rmm. In the Description field, enter the FQDN. Set the Status to active, tick the Shared Frontend box, and select https_shared - http as the Primary frontend.
 
 ![Screenshot 2022-03-31 161129](https://user-images.githubusercontent.com/24654529/161150507-90dd91b8-6340-49b6-8374-d7f984f10e1a.png)
 
