@@ -2,8 +2,17 @@
 
 Assumes fully configured public DNS or DDNS, and a functional PFSense installation with existing valid wildcard SSL certificate available. Adjust hostnames, IPs, etc to suit the environment.
 
-##
+###
+## [HAProxy installation](#haproxy-installation-1)
+###
+
+###
+## [Firewall configuration](#firewall-configuration-1)
+###
+
+###
 # HAProxy installation
+###
 
 Go to System > Package Manager
 
@@ -17,8 +26,9 @@ Find and install haproxy-devel
 
 ![Screenshot 2022-03-31 130322](https://user-images.githubusercontent.com/24654529/161121985-953e24a6-bcaa-418d-a1e4-1ef62a193623.png)
 
-##
+###
 # Firewall configuration
+###
 
 Go to Firewall > Rules
 
