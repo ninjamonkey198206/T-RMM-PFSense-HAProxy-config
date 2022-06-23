@@ -1,6 +1,6 @@
 # T-RMM-PFSense-HAProxy-config
 
-Assumes fully configured public DNS or DDNS, and a functional PFSense installation with existing valid wildcard SSL certificate available. Adjust hostnames, IPs, etc to suit the environment.
+**Assumes fully configured public DNS or DDNS, and a functional PFSense installation with existing valid wildcard SSL certificate available. Adjust hostnames, IPs, etc to suit the environment.**
 
 ###
 ## [HAProxy installation](#haproxy-installation-1)
@@ -8,6 +8,22 @@ Assumes fully configured public DNS or DDNS, and a functional PFSense installati
 
 ###
 ## [Firewall configuration](#firewall-configuration-1)
+###
+
+###
+## [HAProxy backend configuration](#haproxy-backend-configuration-1)
+###
+
+###
+## [Shared HTTP to HTTPS redirect frontend](#shared-http-to-https-redirect-frontend-1)
+###
+
+###
+## [Shared HTTPS frontend](#shared-https-frontend-1)
+###
+
+###
+##
 ###
 
 ###
@@ -26,6 +42,7 @@ Find and install haproxy-devel
 
 ![Screenshot 2022-03-31 130322](https://user-images.githubusercontent.com/24654529/161121985-953e24a6-bcaa-418d-a1e4-1ef62a193623.png)
 
+##
 ###
 # Firewall configuration
 ###
@@ -51,7 +68,9 @@ Create a duplicate rule, changing the port to 443 and the description for HTTPS
 Enable the new rules.
 
 ##
+###
 # HAProxy backend configuration
+###
 
 Go to Services > HAProxy
 
@@ -107,7 +126,9 @@ In the Advanced settings section, change the timeout tunnel entry in the Backend
 Scroll down, save, and apply changes when asked.
 
 ##
+###
 # Shared HTTP to HTTPS redirect frontend 
+###
 
 Now go to the Frontend tab. Click the button to add a new frontend.
 
@@ -143,7 +164,10 @@ to the Advanced pass thru text box.
 
 Save and apply changes. 
 
+##
+###
 # Shared HTTPS frontend
+###
 
 Click the button to add a new frontend.
 
