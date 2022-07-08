@@ -210,11 +210,15 @@ This shared HTTPS frontend will provide SSL offloading for ALL HTTPS frontends u
 
 Click the button to add a new frontend.
 
-![pfsensermm7](https://user-images.githubusercontent.com/24654529/175368001-5679fce6-44d1-4090-ac95-4e059246c5c4.png)
+![Screenshot 2022-07-08 091908](https://user-images.githubusercontent.com/24654529/178012379-30f33478-a172-41ec-8752-2d5b9205a9d0.png)
+
+### Action order matters!!! ###
 
 In the Name field, enter **t-rmm**. In the Description field, enter the rmm FQDN (eg, rmm.example.com). Set the Status to active, tick the Shared Frontend box, and select **https_shared - http** as the Primary frontend.
 
 Scroll to the section titled "Default backend, access control lists and actions" and in the Action Control lists area click the down arrow to create a new acl. Enter **rmm** in the Name field, change the Expression to **Host matches**, and enter the FQDN for rmm into the Value field (eg, rmm.example.com).
+
+Add a new acl. Change the Name to **nats-websocket**, set the Expression to **Path contains**, and enter **/natsws** as the Value. 
 
 Copy the rmm acl. Change the Name to **api**, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
 
@@ -222,9 +226,13 @@ Add a new acl. Change the Expression to **Custom acl:** , in the Name field ente
 
 Copy the api acl. Change the Name to **mesh**, and the Value field to the FQDN for mesh into the Value field (eg, mesh.example.com).
 
+Copy the api acl. Change the Name to **api-ws**, set the Expression to **Host contains**, and the Value field to the FQDN for api into the Value field (eg, api.example.com).
+
 Scroll down to the Actions area of the section and click the down arrow to create a new action. In the Action field, select **Use Backend**, select the rmm backend you created earlier, and enter **rmm** into the Condition acl names field.
 
-Copy the rmm action you just created, and change the Condition acl name to **api**.
+Copy the rmm action you just created, change the Condition acl name to **nats-websocket api-ws**, and change the backend to the rmm-websocket backend (eg, rmm.example.com-websocket).
+
+Copy the initial rmm action you created, and change the Condition acl name to **api**.
 
 Create a new action. In the Action field, select **Use Backend**, select the mesh websockets backend, and enter **is_websocket mesh** into the Condition acl names field.
 
