@@ -125,6 +125,16 @@ In the Advanced settings section, change the timeout tunnel entry in the Backend
 
 Scroll down, save, and apply changes when asked.
 
+![Screenshot 2022-07-08 090956](https://user-images.githubusercontent.com/24654529/178009283-67bfaa90-2a84-4b86-aeaf-5afd2064232f.png)
+
+Copy the mesh-websockets backend. Change the Name entry to match the rmm FQDN-websocket (eg, rmm.example.com-websocket).
+
+Change the Name for the server to rmm-websocket.
+
+In the Timeout / retry settings section, change the entries in Connection timeout and Server timeout to **30000**.
+
+Scroll down, save, and apply changes when asked.
+
 ##
 ###
 # Shared HTTP to HTTPS redirect frontend 
