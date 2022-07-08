@@ -2,6 +2,8 @@
 
 **Assumes fully configured public DNS or DDNS, and a functional PFSense installation with existing valid wildcard SSL certificate available. Adjust hostnames, IPs, etc to suit the environment.**
 
+## Do NOT disable nginx proxy on the T-RMM instance. This assumes that it's in place and functional.
+
 ###
 ## [HAProxy installation](#haproxy-installation-1)
 ###
